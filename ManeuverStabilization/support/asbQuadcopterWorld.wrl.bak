@@ -70,7 +70,7 @@ DEF ObjectToFlyOver Transform {
       }
     }
     geometry Box {
-      size 0.2 0.2 0.2
+      size 0.05 0.05 0.05
     }
   }
 }
