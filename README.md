@@ -81,4 +81,6 @@ Bachelor, Master's, Doctoral
 
 Nonlinear MPC for Quadrotor Fault-Tolerant Control : https://rpg.ifi.uzh.ch/docs/ICRA22_Nan.pdf
 
-AN EXTENDED KALMAN FILTER FOR QUATERNION-BASED ATTITUDE ESTIMATION : https://apps.dtic.mil/sti/tr/pdf/ADA384973.pdf
+Quaternion-Based EKF for Attitude and Bias Estimation : [https://cookierobotics.com/073/](https://cookierobotics.com/073/)
+
+
