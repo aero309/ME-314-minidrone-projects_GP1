@@ -81,6 +81,8 @@ Bachelor, Master's, Doctoral
 
 Nonlinear MPC for Quadrotor Fault-Tolerant Control : https://rpg.ifi.uzh.ch/docs/ICRA22_Nan.pdf
 
+NPMC example in MATLAB : https://youtu.be/XK9ERXqF_xo
+
 Quaternion-Based EKF for Attitude and Bias Estimation : [https://cookierobotics.com/073/](https://cookierobotics.com/073/)
 
 Visually Explained: Kalman Filters: https://www.youtube.com/watch?v=IFeCIbljreY
