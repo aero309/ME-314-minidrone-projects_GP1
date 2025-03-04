@@ -83,4 +83,6 @@ Nonlinear MPC for Quadrotor Fault-Tolerant Control : https://rpg.ifi.uzh.ch/docs
 
 Quaternion-Based EKF for Attitude and Bias Estimation : [https://cookierobotics.com/073/](https://cookierobotics.com/073/)
 
+Visually Explained: Kalman Filters: https://www.youtube.com/watch?v=IFeCIbljreY
 
+For further understanding of the Kalman Filters and extended Kalman Filters : [https://mediaspace.epfl.ch/media/20%2C+ME-422+Multivariable+control+-+Fall+2021+++Week+10+hour+1/0_jk5geom7/30977](https://mediaspace.epfl.ch/channel/ME-422+Multivariable+control+-+2021/30977)
