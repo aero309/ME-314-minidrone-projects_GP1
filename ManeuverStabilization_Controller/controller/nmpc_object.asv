@@ -1,3 +1,43 @@
+x0 = zeros(1,17);
+u0 = zeros(nu,4);
+
+Qpx = 80;
+Qpy = 80;
+Qpz = 800;
+Qx = 60;
+Qy = 60;
+Qwx = .5;
+Qwz = 0.1;
+Qt = 3.;
+Qv = 1.;
+Qu = 1.;
+
+Q = diag([Qpx, Qpy, ])
+
+
+nx = 17;
+ny = 13;
+nu = 4;
+
+
+nlobj = nlmpc(nx,ny,nu);
+
+nlobj.Model.StateFcn = "EOMStateFcn";
+Ts = 1;
+nlobj.Ts = Ts;
+nlobj.PredictionHorizon = 20;
+nlobj.ControlHorizon = 2;
+nlobj.Optimization.ReplaceStandardCost = true;
+
+
+
+for i = 1:nu
+    nlobj.MV(i).Min = Vehicle.Motor.minLimit;   % Minimum thrust (N)
+    nlobj.MV(i).Max = Vehicle.Motor.maxLimit;  % Maximum thrust (N)
+end
+
+nlobj.Optimization.CustomCostFcn = @(X,U,data) 10*sum(U(1:end-1,data.MVIndex(1)).^2);
+
 function dxdt = EOMStateFcn(x, u)
 
     %[px py pz qw qx qy qz vx vy vz wx wy wz T1 T2 T3 T4]
@@ -17,7 +57,8 @@ function dxdt = EOMStateFcn(x, u)
     G1 = 0.002413741908324;
     G2 = 0.044123463146041;
     G3 = 0.044123463146041;
-
+    I = [Ixx, 0, 0; 0, Iyy, 0; 0, 0, Izz];
+    G = [G1, -G1, G1, -G1; -G2, -G2, G2, G2; -G3, G3, G3, -G3];
     dxdt = x;
     dxdt(1) = x(8);
     dxdt(2) = x(9);
@@ -29,8 +70,9 @@ function dxdt = EOMStateFcn(x, u)
     dxdt(8) = 2*(x(5)*x(7) + x(4)*x(6)) * (x(14) + x(15) + x(16) + x(17));
     dxdt(9) = 2*(x(6)*x(7) - x(4)*x(5)) * (x(14) + x(15) + x(16) + x(17));
     dxdt(10) = (x(4)^2 + x(5)^2 + x(6)^2 + x(7)^2) * (x(14) + x(15) + x(16) + x(17)) - g;
-    dxdt(11) = (1 / Ixx) * (G1 * (x(14) - x(15) + x(16) - x(17)) + (Iyy - Izz) * x(12)*x(13));
-    dxdt(12) = (1 / Iyy) * (G2 *(-x(14) - x(15) + x(16) + x(17)) + (Izz - Ixx) * x(13)*x(11));
-    dxdt(13) = (1 / Izz) * (G3 *(-x(14) + x(15) + x(16) - x(17)) + (Ixx - Iyy) * x(11)*x(12));
+    dxdt(11:13) = inv(I) * (G*x(14:17) - cross(x(11:13), I* x(11:13)));
+    % dxdt(11) = (1 / Ixx) * (G1 * (x(14) - x(15) + x(16) - x(17)) + (Iyy - Izz) * x(12)*x(13));
+    % dxdt(12) = (1 / Iyy) * (G2 *(-x(14) - x(15) + x(16) + x(17)) + (Izz - Ixx) * x(13)*x(11));
+    % dxdt(13) = (1 / Izz) * (G3 *(-x(14) + x(15) + x(16) - x(17)) + (Ixx - Iyy) * x(11)*x(12));
     dxdt(14:17) = (1 / sigma) .* (u - x(14:17));
 end
