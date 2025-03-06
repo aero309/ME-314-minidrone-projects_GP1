@@ -1,16 +1,5 @@
-x0 = zeros(1,17);
-u0 = zeros(nu,4);
 
-Qpx = 80;
-Qpy = 80;
-Qpz = 800;
-Qx = 60;
-Qy = 60;
-Qwx = .5;
-Qwz = 0.1;
-Qt = 3.;
-Qv = 1.;
-Qu = 1.;
+
 
 
 nx = 17;
@@ -20,7 +9,7 @@ nu = 4;
 
 nlobj = nlmpc(nx,ny,nu);
 
-nlobj.Model.StateFcn = "EOMStateFcn";
+nlobj.Model.StateFcn = "NMPC_FTT_CostFcn";
 Ts = 1;
 nlobj.Ts = Ts;
 nlobj.PredictionHorizon = 20;
