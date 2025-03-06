@@ -9,7 +9,7 @@ nu = 4;
 
 nlobj = nlmpc(nx,ny,nu);
 
-nlobj.Model.StateFcn = "NMPC_FTT_CostFcn";
+nlobj.Model.StateFcn = "EOMStateFcn";
 Ts = 1;
 nlobj.Ts = Ts;
 nlobj.PredictionHorizon = 20;
@@ -22,7 +22,7 @@ for i = 1:nu
     nlobj.MV(i).Max = Vehicle.Motor.maxLimit;  % Maximum thrust (N)
 end
 
-nlobj.Optimization.CustomCostFcn = @(X,U,data) 10*sum(U(1:end-1,data.MVIndex(1)).^2);
+nlobj.Optimization.CustomCostFcn = "NMPC_FT_CostFcn";
 
 validateFcns(nlobj,rand(nx,1),rand(nu,1));
 
