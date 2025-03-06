@@ -1,25 +1,22 @@
-
-
-
-
-nx = 17;
-ny = 17;
+nx = 13;
+ny = 9;
 nu = 4;
 
 
 nlobj = nlmpc(nx,ny,nu);
 
 nlobj.Model.StateFcn = "EOMStateFcn";
-Ts = 1;
-nlobj.Ts = Ts;
+nlobj.Model.OutputFcn = "NMPCOutputFcn";
+TsMPC = 0.005;
+nlobj.Ts = TsMPC;
 nlobj.PredictionHorizon = 20;
 nlobj.ControlHorizon = 2;
 
 
 
 for i = 1:nu
-    nlobj.MV(i).Min = Vehicle.Motor.minLimit;   % Minimum thrust (N)
-    nlobj.MV(i).Max = Vehicle.Motor.maxLimit;  % Maximum thrust (N)
+    nlobj.MV(i).Min = Vehicle.Motor.minLimit/Vehicle.Motor.thrustToMotorCommand;   % Minimum thrust (N)
+    nlobj.MV(i).Max = Vehicle.Motor.maxLimit/Vehicle.Motor.thrustToMotorCommand;  % Maximum thrust (N)
 end
 
 nlobj.Optimization.CustomCostFcn = "NMPC_FT_CostFcn";
