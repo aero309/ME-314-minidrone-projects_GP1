@@ -1,12 +1,12 @@
 nx = 13;
-ny = 9;
+ny = 13;
 nu = 4;
 
 
 nlobj = nlmpc(nx,ny,nu);
 
 nlobj.Model.StateFcn = "EOMStateFcn";
-nlobj.Model.OutputFcn = "NMPCOutputFcn";
+%nlobj.Model.OutputFcn = "NMPCOutputFcn";
 TsMPC = 0.005;
 nlobj.Ts = TsMPC;
 nlobj.PredictionHorizon = 20;
