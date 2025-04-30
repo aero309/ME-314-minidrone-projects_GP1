@@ -10,7 +10,7 @@ B = [0    0;
      g    0;
      0   -g];
 
-max_error = 3.5;
+max_error = 2.5;
 max_speed = 3;
 
 Q = diag([(1/max_error)^2 (1/max_error)^2 (1/max_speed)^2 (1/max_speed)^2]);   % State error penalty
