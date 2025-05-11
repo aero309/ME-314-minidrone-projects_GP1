@@ -36,7 +36,7 @@ thrustArm = 0.10795;
 % Initial conditions
 init.date = [2017 1 1 0 0 0];
 init.posLLA = [42.299886 -71.350447 71.3232];
-init.posNED = [57 95 -0.0460];
+init.posNED = [57 95 -0.0460-3];
 init.vb = [0 0 0];
 init.euler = [0 0 0];
 init.angRates = [0 0 0];
