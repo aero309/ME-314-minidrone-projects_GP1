@@ -20,25 +20,6 @@ pos_y = logs.Data(9,:);
 pos_z = logs.Data(10,:);  % Fixed index from §0 to 10
 
 % -------------------------------------
-% === Filter Data After 5 Seconds ===
-% -------------------------------------
-idx = time > 8;
-time = time(idx);
-
-quat_w = quat_w(idx);  
-quat_x = quat_x(idx);  
-quat_y = quat_y(idx);  
-quat_z = quat_z(idx);  
-
-omega_x = omega_x(idx);  
-omega_y = omega_y(idx);  
-omega_z = omega_z(idx);  
-
-pos_x = pos_x(idx);  
-pos_y = pos_y(idx);  
-pos_z = pos_z(idx);
-
-% -------------------------------------
 % === Plot 1: Quaternion Components ===
 % -------------------------------------
 Q = [quat_w; quat_x; quat_y; quat_z];
