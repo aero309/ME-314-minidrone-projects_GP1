@@ -97,3 +97,17 @@ for i = 1:3
 end
 sgtitle('Position Components', 'FontSize', 14, 'FontWeight', 'bold');
 set(gcf, 'Color', 'w');
+
+% -------------------------------------
+% === Plot 4: 3D Position Trajectory ===
+% -------------------------------------
+figure('Position', [200, 200, 700, 600]);
+plot3(pos_x, pos_y, -pos_z, 'LineWidth', 2, 'Color', [0.1 0.5 0.8]);
+grid on;
+xlabel('X (m)', 'FontSize', 12);
+ylabel('Y (m)', 'FontSize', 12);
+zlabel('Z (m)', 'FontSize', 12);
+title('3D Position Trajectory', 'FontSize', 14, 'FontWeight', 'bold');
+axis([-2 2 -2 2 0 2]);  % Set fixed axis limits
+view(3);
+set(gcf, 'Color', 'w');
